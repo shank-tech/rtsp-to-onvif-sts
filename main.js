@@ -63,7 +63,10 @@ if (args) {
 
     for (let proxy of proxies) {
         logger.info(`PROXY: ${proxy.listenAddress}:${proxy.listenPort} --> ${proxy.targetAddress}:${proxy.targetPort}`);
-        tcpProxy.createProxy(proxy.listenPort, proxy.targetAddress, proxy.targetPort, { hostname: proxy.listenAddress });
+        tcpProxy.createProxy(proxy.listenPort, proxy.targetAddress, proxy.targetPort, {
+            hostname: proxy.listenAddress,
+            localAddress: proxy.listenAddress
+        });
     }
 
     return 0;
